@@ -31,7 +31,6 @@ model Comment {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
   username      String?
   email         String?   @unique
   emailVerified DateTime?
@@ -91,9 +90,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@index([userId])
 }
