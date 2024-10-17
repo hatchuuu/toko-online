@@ -42,3 +42,27 @@ export const signInCredentials = async (values: SigninFormSchema) => {
         throw error
     }
 }
+
+type Data ={
+    name: string,
+    price: number,
+    userId: any
+}
+
+export const addDataProduct = async (data: Data) => {
+
+    const { name, price, userId } = data
+
+    try {
+        await prisma.product.create({
+            data:{
+                name,
+                price,
+                userId
+            }
+        })
+        return { status: 200, isCreated: true  }
+    } catch (error) {
+        return { status: 400, isCreated: false  }
+    }
+}

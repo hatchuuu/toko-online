@@ -42,6 +42,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!isMatchPassword) {
           return null
         }
+        console.log({user})
         return user
 
       }
@@ -62,7 +63,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return true
     },
     jwt({ token, user }) {
-      if (user) token.role = user.role
+      if (user) {
+        token.role = user.role
+        token.name = user.username
+      }
       return token
     },
     session({ token, session }) {
