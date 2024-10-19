@@ -18,7 +18,7 @@ import { addDataProduct } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
-const Formregister = ({ userId, setOpen }: { userId: string | undefined; setOpen : Dispatch<SetStateAction<boolean>>}) => {
+const Formregister = ({ userId, setOpen }: { userId: string; setOpen : Dispatch<SetStateAction<boolean>>}) => {
   const router = useRouter();
   const form = useForm<AddProductSchema>({
     resolver: zodResolver(addProductSchema),

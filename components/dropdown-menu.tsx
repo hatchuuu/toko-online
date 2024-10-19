@@ -75,13 +75,16 @@ const Dropdownmenu = ({ session }: { session: Session | null }) => {
         <DropdownMenuItem disabled>API</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <form className="w-full "
+          <form
+            className="w-full "
             action={async () => {
               "use server";
               await signOut({ redirectTo: "/login" });
             }}
           >
-            <button type="submit" className="w-full text-start">Log Out</button>
+            <button type="submit" className="w-full text-start">
+              Log Out
+            </button>
           </form>
         </DropdownMenuItem>
       </DropdownMenuContent>

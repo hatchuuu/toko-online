@@ -5,7 +5,7 @@ import React from "react";
 
 const ProductPage = async() => {
   const session = await auth()
-  const userId = session?.user.id 
+  const userId = session?.user.id ?? "" 
   return (
     <div className="bg-gray-300 min-h-screen w-full ">
       <div className="max-w-screen-md mx-auto py-10 text-center">

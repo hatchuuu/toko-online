@@ -44,9 +44,12 @@ export const signInCredentials = async (values: SigninFormSchema) => {
     }
 }
 
-
-
-export const addDataProduct = async (data:any) => {
+type Data={
+    name: string,
+    price: number,
+    userId: string 
+}
+export const addDataProduct = async (data:Data) => {
 
     const { name, price, userId } = data
 
