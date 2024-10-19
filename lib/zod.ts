@@ -1,4 +1,3 @@
-import { prisma } from './prisma';
 import { z } from "zod";
 
 export const loginFormSchema = z

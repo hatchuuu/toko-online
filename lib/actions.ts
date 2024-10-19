@@ -18,7 +18,7 @@ export const signUpCredentials = async (values: LoginFormSchema) => {
             }
         })
     } catch (error) {
-        return { message: "Failed to create user" }
+        return { message: `${error}, Failed to create user` }
     }
     redirect("/login")
 }
@@ -44,13 +44,9 @@ export const signInCredentials = async (values: SigninFormSchema) => {
     }
 }
 
-type Data ={
-    name: string,
-    price: number,
-    userId: any
-}
 
-export const addDataProduct = async (data: Data) => {
+
+export const addDataProduct = async (data:any) => {
 
     const { name, price, userId } = data
 
@@ -59,11 +55,11 @@ export const addDataProduct = async (data: Data) => {
             data:{
                 name,
                 price,
-                userId
+                userId  // Hanya tambahkan userId jika ada
             }
         })
         return { status: 200, isCreated: true  }
     } catch (error) {
-        return { status: 400, isCreated: false  }
+        return { status: 400, isCreated: false , detail: error }
     }
 }
