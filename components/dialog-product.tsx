@@ -13,17 +13,16 @@ import { useState } from "react";
 
 const Dialogproduct = ({ userId }: { userId: string | undefined }) => {
   const [open, setOpen] = useState(false);
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" onClick={() => setOpen(true)}>
-          Add Product
+          Add Product 
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Product</DialogTitle>
+          <DialogTitle>Add Product dari </DialogTitle>
           <DialogDescription>
             Make your products here. Click save when you're done.
           </DialogDescription>

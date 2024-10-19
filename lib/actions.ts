@@ -30,6 +30,7 @@ export const signInCredentials = async (values: SigninFormSchema) => {
         await signIn("credentials", {
             email, password, redirectTo: "/dashboard"
         })
+        return { status: 200, isLogin: true }
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {

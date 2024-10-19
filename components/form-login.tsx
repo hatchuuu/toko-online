@@ -22,9 +22,7 @@ const Formlogin = () => {
   });
   const { handleSubmit, control } = form;
 
-  const onSubmit = handleSubmit((values) =>
-    signInCredentials(values)
-  );
+  const onSubmit = handleSubmit((values) => signInCredentials(values));
 
   return (
     <Form {...form}>
@@ -60,8 +58,15 @@ const Formlogin = () => {
           }}
         />
         <Buttonlogin />
-        <p className=" text-center text-sm text-gray-600">Dont have an account yet?
-            <Link href="/register" className="font-semibold text-base text-gray-800 hover:underline"> Sign Up</Link>
+        <p className=" text-center text-sm text-gray-600">
+          Dont have an account yet?
+          <Link
+            href="/register"
+            className="font-semibold text-base text-gray-800 hover:underline"
+          >
+            {" "}
+            Sign Up
+          </Link>
         </p>
       </form>
     </Form>

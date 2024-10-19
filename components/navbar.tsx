@@ -4,7 +4,9 @@ import { auth } from "@/auth";
 import Dropdownmenu from "./dropdown-menu";
 import Link from "next/link";
 
+
 const Navbar = async () => {
+
   const session = await auth();
   return (
     <div className="py-5 px-8 w-full flex bg-gray-100 justify-between">

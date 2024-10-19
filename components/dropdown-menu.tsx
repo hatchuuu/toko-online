@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { Session } from "next-auth";
-import Link from "next/link";
 import { signOut } from "@/auth";
 
 const Dropdownmenu = ({ session }: { session: Session | null }) => {

@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/table";
 import { getDataProduct } from "@/lib/data";
 import { Metadata } from "next";
-import { Button } from "./ui/button";
 
 export const metadata: Metadata = {
   title: "Products",

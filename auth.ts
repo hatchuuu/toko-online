@@ -6,7 +6,6 @@ import Credentials from 'next-auth/providers/credentials'
 import { compareSync } from "bcrypt-ts"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  
   adapter: PrismaAdapter(prisma),
   pages: {
     signIn: '/login'
