@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { isEmailRegistered, isMatch, isUsernameRegistered } from "@/lib/actions";
+import { isEmailRegistered, isUsernameRegistered } from "@/lib/actions";
 
 export const registrationFormSchema = z
   .object({

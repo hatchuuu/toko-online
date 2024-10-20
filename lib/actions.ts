@@ -1,5 +1,5 @@
 "use server"
-import { compareSync, hashSync } from "bcrypt-ts";
+import { hashSync } from "bcrypt-ts";
 import { LoginFormSchema, SigninFormSchema } from "@/lib/zod";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
@@ -103,25 +103,4 @@ export const isUsernameRegistered = async (username: string): Promise<boolean> =
     },
   });
   return user !== null; // Jika user ditemukan, email sudah terdaftar
-};
-
-export const isMatch = async (email: string, password: string): Promise<boolean> => {
-
-  const user = await prisma.user.findUnique({
-    where: {
-      email
-    }
-  })
-
-  if (!user || !user.password) {
-    return false
-  }
-
-  const isMatchPassword = compareSync(password, user.password)
-  if (!isMatchPassword) {
-    return false
-  } else {
-    return true; // Jika user ditemukan, email sudah terdaftar
-
-  }
 };
