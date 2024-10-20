@@ -11,7 +11,7 @@ import {
 import Formaddproduct from "./form-add-product";
 import { useState } from "react";
 
-const Dialogproduct = ({ userId }: { userId: string }) => {
+const Dialogproduct = () => {
   const [open, setOpen] = useState(false);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -27,7 +27,7 @@ const Dialogproduct = ({ userId }: { userId: string }) => {
             Make your products here. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
-        <Formaddproduct userId={userId} setOpen={setOpen} />
+        <Formaddproduct setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );

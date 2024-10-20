@@ -15,14 +15,37 @@ import {
 import Buttonlogin from "./button-login";
 import { SigninFormSchema, signinFormSchema } from "@/lib/zod";
 import { signInCredentials } from "@/lib/actions";
+import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import { useState } from "react";
 
 const Formlogin = () => {
+  const [visible, setVisible] = useState(false);
+
   const form = useForm<SigninFormSchema>({
     resolver: zodResolver(signinFormSchema),
   });
-  const { handleSubmit, control } = form;
+  const { handleSubmit, control, setError } = form;
 
-  const onSubmit = handleSubmit((values) => signInCredentials(values));
+  const onSubmit = handleSubmit(async (values) => {
+    const result = await signInCredentials(values);
+    if (result?.message) {
+      setError("email", {
+        type: "manual",
+        message: result.message,
+      });
+    }
+    // if (result.message === "No user found") {
+    //   setError("email", {
+    //     type: "manual",
+    //     message: "No user found with this email",
+    //   });
+    // } else if (result.message === "Password incorrect") {
+    //   setError("password", {
+    //     type: "manual",
+    //     message: "Password incorrect",
+    //   });
+    // }
+  });
 
   return (
     <Form {...form}>
@@ -50,7 +73,19 @@ const Formlogin = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" {...field} />
+                  <div className="relative">
+                    <Input
+                      className="relative pr-10"
+                      type={visible ? "text" : "password"}
+                      {...field}
+                    />
+                    <div
+                      onClick={() => setVisible((prev) => !prev)}
+                      className="absolute right-2 bottom-[2px] z-10 p-2"
+                    >
+                      {visible ? <HiOutlineEye /> : <HiOutlineEyeOff />}
+                    </div>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -6,7 +6,7 @@ import Buttonregister from "@/components/button-register";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { signUpCredentials } from "@/lib/actions";
-import { LoginFormSchema, loginFormSchema } from "@/lib/zod";
+import { LoginFormSchema, registrationFormSchema } from "@/lib/zod"; // Pastikan untuk mengimpor skema yang benar
 
 import {
   Form,
@@ -16,16 +16,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Checkbox } from "./ui/checkbox";
 
 const Formregister = () => {
   const form = useForm<LoginFormSchema>({
-    resolver: zodResolver(loginFormSchema),
+    resolver: zodResolver(registrationFormSchema), // Pastikan menggunakan skema yang benar
   });
   const { handleSubmit, control } = form;
 
-  const onSubmit = handleSubmit((values) =>
-    signUpCredentials(values)
-  );
+  const onSubmit = handleSubmit((values) => signUpCredentials(values));
 
   return (
     <Form {...form}>
@@ -90,9 +89,38 @@ const Formregister = () => {
             );
           }}
         />
+        <FormField
+          control={control}
+          name="term" // Menambahkan field untuk syarat dan ketentuan
+          render={({ field }) => {
+            return (
+              <FormItem className="mt-3">
+                <div className="flex flex-row items-start space-x-3 space-y-0">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                    <FormLabel>
+                      Saya setuju dengan syarat dan ketentuan
+                    </FormLabel>
+                </div>
+                <FormMessage />
+              </FormItem>
+            );
+          }}
+        />
         <Buttonregister />
-        <p className=" text-center text-sm text-gray-600">Already have an account?
-            <Link href="/login" className="font-semibold text-base text-gray-800 hover:underline"> Sign In</Link>
+        <p className="text-center text-sm text-gray-600">
+          Already have an account?
+          <Link
+            href="/login"
+            className="font-semibold text-base text-gray-800 hover:underline"
+          >
+            {" "}
+            Sign In
+          </Link>
         </p>
       </form>
     </Form>
