@@ -3,18 +3,18 @@ import { isEmailRegistered, isUsernameRegistered } from "@/lib/actions";
 
 export const registrationFormSchema = z
   .object({
-    username: z
+    name: z
       .string()
       .min(3, "Minimal 3 karakter")
       .max(16, "Maksimal 16 karakter")
       .regex(/^[a-zA-Z0-9_]+$/, "Hanya boleh menggunakan huruf, angka, dan underscore")
-      .refine(async (username) => {
-        const userExists = await isUsernameRegistered(username);
-        return !userExists; 
+      .refine(async (name) => {
+        const userExists = await isUsernameRegistered(name);
+        return !userExists;
       }, {
         message: "Username sudah terdaftar",
       }),
-    
+
     email: z
       .string()
       .email("Bukan termasuk email yang valid")
@@ -24,7 +24,7 @@ export const registrationFormSchema = z
       }, {
         message: "Email sudah terdaftar",
       }),
-    
+
     password: z
       .string()
       .min(8, "Minimal 8 karakter")
@@ -42,11 +42,11 @@ export const registrationFormSchema = z
         message: "Anda harus menyetujui syarat dan ketentuan",
       }),
   })
-    .refine(async (data) => !(await isEmailRegistered(data.email)), {
+  .refine(async (data) => !(await isEmailRegistered(data.email)), {
     message: "Email sudah terdaftar",
     path: ["email"],
   })
-    .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.password === data.confirmPassword, {
     message: "Password tidak sesuai",
     path: ["confirmPassword"],
   })
@@ -62,27 +62,13 @@ export type LoginFormSchema = z.infer<typeof registrationFormSchema>;
 export const signinFormSchema = z
   .object({
     email: z.string().email("Bukan termasuk email"),
-    // .refine(async (email) => {
-    //   const emailExists = await isEmailRegistered(email);
-    //   return emailExists; 
-    // }, {
-    //   message: "Email belum terdaftar",
-    // }),
     password: z
       .string()
       .min(6, "Minimal 6 karakter")
       .max(20, "Maksimal 20 karakter")
   })
-  // .refine(async (data) => {
-  //   const match = await isMatch(data.email, data.password);
-  //   return match;
-  // },{
-  //   message: "Email atau password salah",
-  //   path: ["password"]
-  // })
 
 export type SigninFormSchema = z.infer<typeof signinFormSchema>;
-
 
 
 export const addProductSchema = z.object({

@@ -31,7 +31,7 @@ const Formregister = () => {
       <form onSubmit={onSubmit} className="max-w-md flex flex-col gap-2">
         <FormField
           control={control}
-          name="username"
+          name="name"
           render={({ field }) => {
             return (
               <FormItem>
@@ -102,9 +102,7 @@ const Formregister = () => {
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
-                    <FormLabel>
-                      Saya setuju dengan syarat dan ketentuan
-                    </FormLabel>
+                  <FormLabel>Saya setuju dengan syarat dan ketentuan</FormLabel>
                 </div>
                 <FormMessage />
               </FormItem>

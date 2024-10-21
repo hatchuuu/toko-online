@@ -37,7 +37,7 @@ const Tableuser = async () => {
           {userArray.map((items, index) => (
             <TableRow key={items.id}>
               <TableCell>{index + 1}</TableCell>
-              <TableCell>{items?.username}</TableCell>
+              <TableCell>{items?.name}</TableCell>
               <TableCell>{items?.email}</TableCell>
               <TableCell>{items?.role}</TableCell>
             </TableRow>

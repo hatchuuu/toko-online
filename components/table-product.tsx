@@ -41,7 +41,7 @@ const Tableproduct = async () => {
               <TableCell>{items.name}</TableCell>
               <TableCell>{items.price}</TableCell>
               <TableCell>{items.createdAt.toDateString()}</TableCell>
-              <TableCell>{items.user.username}</TableCell>
+              <TableCell>{items.user.name}</TableCell>
             </TableRow>
           ))}
         </TableBody>

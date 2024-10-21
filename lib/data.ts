@@ -29,7 +29,7 @@ export const getDataProduct = async () => {
                 include: {
                     user: {
                         select: {
-                            username: true
+                            name: true
                         }
                     }
                 }
@@ -47,7 +47,7 @@ export const getDataProduct = async () => {
                 include: {
                     user: {
                         select: {
-                            username: true
+                            name: true
                         }
                     }
                 }

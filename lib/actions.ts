@@ -6,19 +6,13 @@ import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
-// const userAuth = async () => {
-//   const user = await auth()
-//   const userId = user?.user.id ?? ""
-//   return userId
-// }
-
 export const signUpCredentials = async (values: LoginFormSchema) => {
-  const { username, email, password, term } = values
+  const { name, email, password, term } = values
   const hashedPassword = hashSync(password, 10);
   try {
     await prisma.user.create({
       data: {
-        username,
+        name,
         email,
         password: hashedPassword,
         term
@@ -81,10 +75,10 @@ export const isEmailRegistered = async (email: string): Promise<boolean> => {
   return user !== null; // Jika user ditemukan, email sudah terdaftar
 };
 
-export const isUsernameRegistered = async (username: string): Promise<boolean> => {
+export const isUsernameRegistered = async (name: string): Promise<boolean> => {
   const user = await prisma.user.findFirst({
     where: {
-      username: username,
+      name,
     },
   });
   return user !== null; // Jika user ditemukan, email sudah terdaftar

@@ -3,6 +3,8 @@ import NextAuth from "next-auth"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from "@/lib/prisma"
 import Credentials from 'next-auth/providers/credentials'
+import Google from 'next-auth/providers/google'
+import Github from 'next-auth/providers/github'
 import { compareSync } from "bcrypt-ts"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -14,6 +16,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     strategy: "jwt",
   },
   providers: [
+    Google,
+    Github,
     Credentials({
       credentials: {
         email: {},
@@ -64,7 +68,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     jwt({ token, user }) {
       if (user) {
         token.role = user.role
-        token.name = user.username
       }
       return token
     },

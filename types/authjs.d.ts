@@ -5,7 +5,6 @@ import { AdapterUser as DefaultAdapterUser } from "@auth/core/adapters";
 declare module "next-auth" {
     interface User {
         role: string
-        username : string | null
     }
     interface Session {
         user: User & DefaultSession["user"]
@@ -21,7 +20,6 @@ declare module "next-auth/jwt" {
 
 declare module "@auth/core/adapters" {
     interface AdapterUser extends DefaultAdapterUser {
-      role: string; // Menambahkan properti role pada AdapterUser
-      username : string | null
+        role: string; // Menambahkan properti role pada AdapterUser
     }
-  }
+}
