@@ -34,17 +34,6 @@ const Formlogin = () => {
         message: result.message,
       });
     }
-    // if (result.message === "No user found") {
-    //   setError("email", {
-    //     type: "manual",
-    //     message: "No user found with this email",
-    //   });
-    // } else if (result.message === "Password incorrect") {
-    //   setError("password", {
-    //     type: "manual",
-    //     message: "Password incorrect",
-    //   });
-    // }
   });
 
   return (

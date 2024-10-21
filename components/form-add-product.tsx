@@ -14,25 +14,30 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "./ui/button";
-import { addDataProduct } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
-const Formregister = ({ setOpen }: {setOpen : Dispatch<SetStateAction<boolean>>}) => {
+const Formregister = ({
+  setOpen,
+}: {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   const router = useRouter();
   const form = useForm<AddProductSchema>({
     resolver: zodResolver(addProductSchema),
   });
   const { handleSubmit, control } = form;
 
-  const onSubmit = handleSubmit(async (values) => {
-
-    const result = await addDataProduct(values);
-    if (result.isCreated) {
-      setOpen(false)
+  const onSubmit = handleSubmit(async (values: AddProductSchema) => {
+    const response = await fetch("/api/product", {
+      method: "POST",
+      body: JSON.stringify(values),
+    });
+    const product = await response.json();
+    if (product.isCreated) {
+      setOpen(false);
       router.refresh();
-    }
-    else {
+    } else {
       console.error("Gagal menambahkan product");
     }
   });

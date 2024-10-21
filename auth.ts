@@ -41,7 +41,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!isMatchPassword) {
           return null
         }
-        console.log({user})
+        console.log({ user })
         return user
 
       }
@@ -51,7 +51,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     authorized({ auth, request: { nextUrl } }) {
       const isLoggin = !!auth?.user
 
-      const ProtectedRoutes = ['/dashboard', '/user', '/product']
+      const ProtectedRoutes = ['/dashboard', '/user', '/product', '/api']
 
       if (!isLoggin && ProtectedRoutes.includes(nextUrl.pathname)) {
         return Response.redirect(new URL('/login', nextUrl))

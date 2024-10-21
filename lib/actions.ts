@@ -3,14 +3,14 @@ import { hashSync } from "bcrypt-ts";
 import { LoginFormSchema, SigninFormSchema } from "@/lib/zod";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
-import { auth, signIn } from "@/auth";
+import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
-const userAuth = async () => {
-  const user = await auth()
-  const userId = user?.user.id ?? ""
-  return userId
-}
+// const userAuth = async () => {
+//   const user = await auth()
+//   const userId = user?.user.id ?? ""
+//   return userId
+// }
 
 export const signUpCredentials = async (values: LoginFormSchema) => {
   const { username, email, password, term } = values
@@ -32,21 +32,6 @@ export const signUpCredentials = async (values: LoginFormSchema) => {
 
 export const signInCredentials = async (values: SigninFormSchema) => {
   const { email, password } = values
-
-  // const user = await prisma.user.findUnique({
-  //   where: { email }
-  // })
-
-  // if (!user || !user.password) {
-  //   return{message:"No user found"}
-  // }
-
-  // const isMatchPassword = compareSync(password, user.password)
-  // if (!isMatchPassword) {
-  //   return{message:"Password incorrect"}
-  // }
-
-
   try {
     await signIn("credentials", {
       email, password, redirectTo: "/dashboard"
@@ -65,27 +50,27 @@ export const signInCredentials = async (values: SigninFormSchema) => {
   }
 }
 
-type Data = {
-  name: string,
-  price: number,
-}
-export const addDataProduct = async (data: Data) => {
-  const userIdNew = await userAuth()
-  const { name, price } = data
+// type Data = {
+//   name: string,
+//   price: number,
+// }
+// export const addDataProduct = async (data: Data) => {
+//   const userIdNew = await userAuth()
+//   const { name, price } = data
 
-  try {
-    await prisma.product.create({
-      data: {
-        name,
-        price,
-        userId: userIdNew  // Hanya tambahkan userId jika ada
-      }
-    })
-    return { status: 200, isCreated: true }
-  } catch (error) {
-    return { status: 400, isCreated: false, detail: error }
-  }
-}
+//   try {
+//     await prisma.product.create({
+//       data: {
+//         name,
+//         price,
+//         userId: userIdNew  // Hanya tambahkan userId jika ada
+//       }
+//     })
+//     return { status: 200, isCreated: true }
+//   } catch (error) {
+//     return { status: 400, isCreated: false, detail: error }
+//   }
+// }
 
 export const isEmailRegistered = async (email: string): Promise<boolean> => {
   const user = await prisma.user.findUnique({
