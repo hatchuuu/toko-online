@@ -11,9 +11,9 @@ const ButtonGithub = () => {
         await signIn("github", { redirectTo: "/dashboard" });
       }}
     >
-      <Button className="w-full py-5 gap-1" type="submit">
-        <IoLogoGithub />
-        Sign in With Github
+      <Button className="w-full py-7 gap-1" type="submit">
+        <IoLogoGithub size={15} />
+        Github
       </Button>
     </form>
   );

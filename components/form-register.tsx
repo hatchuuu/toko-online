@@ -94,7 +94,7 @@ const Formregister = () => {
           name="term" // Menambahkan field untuk syarat dan ketentuan
           render={({ field }) => {
             return (
-              <FormItem className="mt-3">
+              <FormItem className="mt-4 ms-2">
                 <div className="flex flex-row items-start space-x-3 space-y-0">
                   <FormControl>
                     <Checkbox
@@ -110,7 +110,7 @@ const Formregister = () => {
           }}
         />
         <Buttonregister />
-        <p className="text-center text-sm text-gray-600">
+        <p className="mt-2 text-sm text-gray-600">
           Already have an account?
           <Link
             href="/login"

@@ -11,9 +11,9 @@ const ButtonGoogle = () => {
         await signIn("google", { redirectTo: "/dashboard" });
       }}
     >
-      <Button className="w-full py-5 gap-1" type="submit">
-        <IoLogoGoogle />
-        Sign in With Google
+      <Button className="w-full py-7 gap-1" type="submit">
+        <IoLogoGoogle size={15} />
+        Google
       </Button>
     </form>
   );

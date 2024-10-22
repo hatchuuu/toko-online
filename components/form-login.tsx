@@ -64,13 +64,13 @@ const Formlogin = () => {
                 <FormControl>
                   <div className="relative">
                     <Input
-                      className="relative pr-10"
+                      className="relative pr-10 peer"
                       type={visible ? "text" : "password"}
                       {...field}
                     />
                     <div
                       onClick={() => setVisible((prev) => !prev)}
-                      className="absolute right-2 bottom-[2px] z-10 p-2"
+                      className="absolute z-10 p-2 right-2 bottom-1 peer-hover:right-1 peer-hover:bottom-0 peer-focus:right-1 peer-focus:bottom-0 "
                     >
                       {visible ? <HiOutlineEye /> : <HiOutlineEyeOff />}
                     </div>
@@ -82,7 +82,7 @@ const Formlogin = () => {
           }}
         />
         <Buttonlogin />
-        <p className=" text-center text-sm text-gray-600">
+        <p className="text-sm text-gray-600 mt-2">
           Dont have an account yet?
           <Link
             href="/register"

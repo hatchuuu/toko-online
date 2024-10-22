@@ -16,13 +16,11 @@ const Dialogproduct = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" onClick={() => setOpen(true)}>
-          Add Product 
-        </Button>
+        <Button onClick={() => setOpen(true)}>Add Product</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Product dari </DialogTitle>
+          <DialogTitle>Add Product </DialogTitle>
           <DialogDescription>
             Make your products here. Click save when you&apos;re done.
           </DialogDescription>
